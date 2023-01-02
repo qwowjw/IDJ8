@@ -83,7 +83,7 @@ bool InputManager::MousePress(int button){
 
 bool InputManager::MouseRelease(int button){
 
-	if ((mouseUpdate[button] == updateCounter) && mouseState[button] == true) {
+	if ((mouseUpdate[button] == updateCounter) && mouseState[button] == false) {
 		return true;
 	}
 	else {
@@ -98,7 +98,6 @@ bool InputManager::IsMouseDown(int button){
 	else {
 		return false;
 	}
-
 }
 
 int InputManager::GetMouseX(){

@@ -20,6 +20,10 @@ class StageState : public State{
     
     TileSet* tileSet;
     Music* backgroundMusic;
+    int bolax;
+    int bolay;
+    GameObject* bola; 
+    bool seguindo;
 public:
     void Start();
     ~StageState();

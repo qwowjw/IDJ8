@@ -1,4 +1,5 @@
 #include "Rect.h"
+#include "math.h"
 Rect::Rect(){
 	x=y=w=h=0;
 }
@@ -20,6 +21,11 @@ bool Rect::Contains(float x, float y){
 
 bool Rect::Contains(Vec2 b){
 	return b.x >= this->x && b.x <= this->x + w && b.y >= this->y && b.y <= this->y + h;
+}
+
+bool Rect::Circle(float x,float y){
+	return (sqrt((pow(abs(x - this->x),2)) + pow(abs(y - this->y),2))) <= (w+h)/2;
+
 }
 
 void Rect::SetCentro(float x, float y) {

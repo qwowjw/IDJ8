@@ -19,6 +19,7 @@ StageState::StageState() : State() {
 	started = false;
 	backgroundMusic = nullptr;
 	tileSet = nullptr;
+	seguindo = false;
 }
 StageState::~StageState() {
     objectArray.clear();
@@ -37,7 +38,6 @@ void StageState::LoadAssets(){
 	bg1->AddComponent(update);
 	objectArray.emplace_back(bg1);
 
-	
     backgroundMusic = new Music("assets/audio/stageState.ogg");
 	backgroundMusic->Play();
 
@@ -63,7 +63,7 @@ void StageState::LoadAssets(){
 	}
 
 	GameObject* penguin = new GameObject();
-		Sprite* penguinsprite = new Sprite(*penguin, "assets/img/ferrarisemfogo.png");
+	Sprite* penguinsprite = new Sprite(*penguin, "assets/img/ferrarisemfogo.png");
 	penguin->box.SetCentro(704, 640);
 	penguin->box.h = penguinsprite->GetHeight();
 	penguin->box.w = penguinsprite->GetWidth();
@@ -71,7 +71,16 @@ void StageState::LoadAssets(){
 	penguin->AddComponent(new PenguinBody(*penguin));
 	objectArray.emplace_back(penguin);
 
-
+	bola = new GameObject();
+	Sprite* bolasprite = new Sprite(*bola, "assets/img/bola.png");
+	bola->box.SetCentro(684,620);
+	bola->box.h = bolasprite->GetHeight();
+	bola->box.w = bolasprite->GetWidth();
+	bolax = bolasprite->GetHeight();
+	bolay = bolasprite->GetWidth();
+	bola->AddComponent(bolasprite);
+	bola->AddComponent(new Collider(*bola));
+	objectArray.emplace_back(bola);
 }
 
 void StageState::Update(float dt) {
@@ -133,7 +142,15 @@ void StageState::Update(float dt) {
 		//EndState* endState = new EndState();
 		//Game::GetInstance().Push(endState);
 	}
+	int mouseX = InputManager::GetInstance().GetMouseX() + Camera::pos.x;
+	int mouseY = InputManager::GetInstance().GetMouseY() + Camera::pos.y;
 
+	if (InputManager::GetInstance().MousePress(LEFT_MOUSE_BUTTON) && (bola->box.Contains(mouseX,mouseY)))
+		seguindo = true;
+	if (seguindo)
+		bola->box.SetCentro(mouseX,mouseY);
+	if (InputManager::GetInstance().MouseRelease(LEFT_MOUSE_BUTTON))
+		seguindo = false;
 }
 void StageState::Render() {
 	TileMap* tm1 = nullptr;

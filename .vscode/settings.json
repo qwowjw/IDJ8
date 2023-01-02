@@ -5,7 +5,8 @@
         "iostream": "cpp",
         "stack": "cpp",
         "ostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "cmath": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

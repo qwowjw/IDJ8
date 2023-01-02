@@ -31,7 +31,7 @@ ifeq ($(OS),Windows_NT)
 RMDIR = rd /s /q
 RM = del /q
 
-SDL_PATHS = E:\Introd.Des\SDL2-2.0.22\SDL2-2.0.22
+SDL_PATHS = C:\SDL2
 #SDL_PATHS = C:/SDL2
 
 SDL_INC_PATH += $(addsuffix /include,$(SDL_PATHS))

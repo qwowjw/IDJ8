@@ -10,10 +10,10 @@ public:
     float x, y, h, w;
     bool Contains(float x, float y);
     bool Contains(Vec2 b);
+    bool Circle(float x, float y);
     void SetCentro(float x,float y);
 	void SetCentro(Vec2 vect);
     Vec2 GetVecCentralizado();
-
 };
 
 #endif
